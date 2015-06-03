@@ -1,0 +1,5 @@
+%article.video_category
+  - @results.each do |video|
+    .video.col-sm-2.horizontal-margin
+      = link_to video do
+        = image_tag("/tmp/#{video.cover}")

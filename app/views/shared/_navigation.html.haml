@@ -17,10 +17,9 @@
           %a{:href => '#'} My Queue
         %li
           %a{:href => '#'} People
-      %form.navbar-form.navbar-left{:role => 'search'}
-        .form-group
-          %input.form-control{:placeholder => 'Search', :type => 'text'}/
-        %button.btn.btn-default{:type => 'submit'} Submit
+      = form_tag search_videos_path, method: 'get', class: 'navbar-form navbar-left' do
+        %input.search-query(name='search_term' type='text' class='form-control' placeholder='Search video by title')
+        %button.btn(type='submit') Search
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', :href => '#', :role => 'button'}
