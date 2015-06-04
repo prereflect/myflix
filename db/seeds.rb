@@ -60,3 +60,27 @@ Video.create!(title: 'Underwater Basket Weaving',
              screenshot: 'underwater-large.jpg',
              category: sports)
 
+Video.create!(title: 'Ultimate Spider-Man',
+             description: 'Peter Parker comes of age in an epic tale that finds him torn between his teenage life and a war between SHIELD and villain Norman Osborn.',
+             cover: 'spiderman.jpg',
+             screenshot: 'spiderman-large.jpg',
+             category: children)
+
+Video.create!(title: 'Ultimate Spider-Man',
+             description: 'Peter Parker comes of age in an epic tale that finds him torn between his teenage life and a war between SHIELD and villain Norman Osborn.',
+             cover: 'spiderman.jpg',
+             screenshot: 'spiderman-large.jpg',
+             category: children)
+
+Video.create!(title: 'Ultimate Spider-Man',
+             description: 'Peter Parker comes of age in an epic tale that finds him torn between his teenage life and a war between SHIELD and villain Norman Osborn.',
+             cover: 'spiderman.jpg',
+             screenshot: 'spiderman-large.jpg',
+             category: children)
+
+Video.create!(title: 'Ultimate Spider-Man',
+             description: 'Peter Parker comes of age in an epic tale that finds him torn between his teenage life and a war between SHIELD and villain Norman Osborn.',
+             cover: 'spiderman.jpg',
+             screenshot: 'spiderman-large.jpg',
+             category: children)
+

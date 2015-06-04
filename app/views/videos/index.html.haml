@@ -4,7 +4,7 @@
       = link_to category_path(category) do
         %h2= category.name
     .videos.row
-      - category.videos.each do |video|
+      - category.recent_videos.each do |video|
         .video.col-sm-2.horizontal-margin
           = link_to video do
             = image_tag("/tmp/#{video.cover}")
