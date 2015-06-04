@@ -3,14 +3,13 @@ require 'spec_helper'
 describe Video do
   it { should belong_to(:category) }
   it { should validate_presence_of(:title) }
-  it { should validate_uniqueness_of(:title) }
   it { should validate_presence_of(:description) }
 
   describe 'video search by attribute' do
     let!(:dragon) { Video.create(title: 'How to Train Your Dragon', description: 'Hiccup and Toothless, BFF') }
     let(:cop) { Video.create(title: 'Training Day', description: 'Bad Cop, Good Cop') }
 
-    describe 'search_by_title' do
+    describe '.search_by_title' do
       it 'returns an empty array if there is no match' do
         expect(Video.search_by_title('hello')).to eq([])
       end
@@ -27,7 +26,7 @@ describe Video do
         expect(Video.search_by_title('how')).to eq([dragon])
       end
 
-      it 'returns an array of all matches ordered by created_at DESC' do
+      it 'returns an array of all matches ordered by created_at desc' do
         expect(Video.search_by_title('train')).to eq([cop, dragon])
       end
     end
