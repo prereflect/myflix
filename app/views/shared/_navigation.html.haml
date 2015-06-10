@@ -2,12 +2,15 @@
   .container-fluid
     / Brand and toggle get grouped for better mobile display
     .navbar-header
-      %button.navbar-toggle.collapsed{'data-target' => '#bs-example-navbar-collapse-1', 'data-toggle' => 'collapse', :type => 'button'}
+      %button.navbar-toggle.collapsed{                                         |
+        'data-target' => '#bs-example-navbar-collapse-1',                      |
+        'data-toggle' => 'collapse'                                            |
+        , :type => 'button'}                                                   |
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{:href => '#'} MyFLiX
+      %a.navbar-brand{:href => root_path} MyFLiX
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav
@@ -17,12 +20,19 @@
           %a{:href => '#'} My Queue
         %li
           %a{:href => '#'} People
-      = form_tag search_videos_path, method: 'get', class: 'navbar-form navbar-left' do
-        %input.search-query(name='search_term' type='text' class='form-control' placeholder='Search video by title')
+      = form_tag search_videos_path, method: 'get',                            |
+                                     class: 'navbar-form navbar-left' do
+        %input.search-query(name='search_term'                                 |
+                            type='text'                                        |
+                            class='form-control'                               |
+                            placeholder='Search video by title')               |
         %button.btn(type='submit') Search
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
-          %a.dropdown-toggle{'aria-expanded' => 'false', 'data-toggle' => 'dropdown', :href => '#', :role => 'button'}
+          %a.dropdown-toggle{'aria-expanded' => 'false',                       |
+                             'data-toggle' => 'dropdown',                      |
+                             :href => '#',                                     |
+                             :role => 'button'}                                |
             Welcome, Toby
             %span.caret
           %ul.dropdown-menu{:role => 'menu'}
