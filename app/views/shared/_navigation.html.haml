@@ -21,13 +21,12 @@
             %a{:href => '#'} My Queue
           %li
             %a{:href => '#'} People
-        = form_tag search_videos_path, method: 'get',                          |
+        = form_tag search_videos_path, method: 'get',
                                        class: 'navbar-form navbar-left' do
-          %input.search-query(name='search_term'                               |
-                              type='text'                                      |
-                              class='form-control'                             |
-                              placeholder='Search video by title')             |
-          %button.btn(type='submit') Search
+          = text_field_tag :search_term, params[:search_term] || '',
+                           class: 'form-control',
+                           placeholder: 'Seach video by title'
+          = submit_tag 'Search', name: nil, class: 'btn btn-default'
         %ul.nav.navbar-nav.navbar-right
           %li.dropdown
             %a.dropdown-toggle{'aria-expanded' => 'false',                     |
