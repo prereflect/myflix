@@ -13,35 +13,36 @@
       %a.navbar-brand{:href => root_path} MyFLiX
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          %a{:href => '#'} Videos
-        %li
-          %a{:href => '#'} My Queue
-        %li
-          %a{:href => '#'} People
-      = form_tag search_videos_path, method: 'get',                            |
-                                     class: 'navbar-form navbar-left' do
-        %input.search-query(name='search_term'                                 |
-                            type='text'                                        |
-                            class='form-control'                               |
-                            placeholder='Search video by title')               |
-        %button.btn(type='submit') Search
-      %ul.nav.navbar-nav.navbar-right
-        %li.dropdown
-          %a.dropdown-toggle{'aria-expanded' => 'false',                       |
-                             'data-toggle' => 'dropdown',                      |
-                             :href => '#',                                     |
-                             :role => 'button'}                                |
-            Welcome, Toby
-            %span.caret
-          %ul.dropdown-menu{:role => 'menu'}
-            %li
-              %a{:href => '#'} Account
-            %li
-              %a{:href => '#'} Plan and Billing
-            %li.divider
-            %li
-              %a{:href => '#'} Sign Out
-    / /.navbar-collapse
-  / /.container-fluid
+      - if current_user
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => '#'} Videos
+          %li
+            %a{:href => '#'} My Queue
+          %li
+            %a{:href => '#'} People
+        = form_tag search_videos_path, method: 'get',                          |
+                                       class: 'navbar-form navbar-left' do
+          %input.search-query(name='search_term'                               |
+                              type='text'                                      |
+                              class='form-control'                             |
+                              placeholder='Search video by title')             |
+          %button.btn(type='submit') Search
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{'aria-expanded' => 'false',                     |
+                               'data-toggle' => 'dropdown',                    |
+                               :href => '#',                                   |
+                               :role => 'button'}                              |
+              Welcome, #{current_user.full_name}
+              %span.caret
+            %ul.dropdown-menu{:role => 'menu'}
+              %li
+                %a{:href => '#'} Account
+              %li
+                %a{:href => '#'} Plan and Billing
+              %li.divider
+              %li
+                %a{:href => sign_out_path} Sign Out
+      / /.navbar-collapse
+    / /.container-fluid
