@@ -20,8 +20,8 @@ describe SessionsController do
   describe 'POST create' do
     context 'with valid credentials' do
       before(:each) { post :create, user: toby,
-                                   email: toby.email,
-                                   password: toby.password }
+                                    email: toby.email,
+                                    password: toby.password }
 
       it 'puts the signed in user in the session' do
         expect(session[:user_id]).to eq(toby.id)
