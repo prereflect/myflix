@@ -84,9 +84,9 @@ Video.create!(title: 'Ultimate Spider-Man',
              screenshot: 'spiderman-large.jpg',
              category: children)
 
-toby = User.create(email: 'toby@woller.io',
+toby = User.create!(email: 'toby@woller.io',
                    password: 'password',
                    full_name: 'Toby Woller')
 
-Review.create(user: toby, video: skate, rating: 5, content: 'This is a rad movie!')
-Review.create(user: toby, video: skate, rating: 1, content: 'This is a horrible movie!')
+Review.create!(user: toby, video: skate, rating: 5, content: 'This is a rad movie!')
+Review.create!(user: toby, video: skate, rating: 1, content: 'This is a horrible movie!')
