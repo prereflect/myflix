@@ -42,7 +42,7 @@ Video.create!(title: 'Rahsaan Roland Kirk',
              screenshot: 'roland-kirk-large.jpg',
              category: music)
 
-Video.create!(title: 'Bones Brigade: An Autobiography',
+skate = Video.create!(title: 'Bones Brigade: An Autobiography',
              description: 'This documentary follows six teenagers who formed a skateboarding team in the 1980s, revitalizing the sport and becoming its top athletes.',
              cover: 'bones-brigade.jpg',
              screenshot: 'bones-brigade-large.jpg',
@@ -84,3 +84,9 @@ Video.create!(title: 'Ultimate Spider-Man',
              screenshot: 'spiderman-large.jpg',
              category: children)
 
+toby = User.create!(email: 'toby@woller.io',
+                   password: 'password',
+                   full_name: 'Toby Woller')
+
+Review.create!(user: toby, video: skate, rating: 5, content: 'This is a rad movie!')
+Review.create!(user: toby, video: skate, rating: 1, content: 'This is a horrible movie!')
