@@ -7,7 +7,8 @@
         %header
           %h2= @video.title
         %p= @video.description
-
+        .actions
+          = link_to "+ My Queue", queue_items_path(video_id: @video), method: :post, class: 'btn btn-default'
 %section.reviews.container
   .row
     .col-sm-10.col-sm-offset-1
@@ -26,7 +27,7 @@
               .col-sm-8
                 = f.text_area :content, rows: 6, class: 'form-control'
         %fieldset.form-group.actions.clearfix
-          = f.submit(class: 'btn')
+          = f.submit(class: 'btn btn-default')
           = link_to 'Cancel', @video
       %header
         %h3 User Reviews (#{@reviews.count})
