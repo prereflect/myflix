@@ -18,7 +18,7 @@
           %li
             %a{:href => '#'} Videos
           %li
-            %a{:href => '#'} My Queue
+            = link_to 'My Queue', my_queue_path
           %li
             %a{:href => '#'} People
         = form_tag search_videos_path, method: 'get',
