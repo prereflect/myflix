@@ -19,8 +19,8 @@ describe QueueItem do
     it 'returns rating when review is present' do
       review = Fabricate(:review, user: toby, video: video, rating: 4)
       expect(queue_item.rating).to eq(review.rating)
-
     end
+
     it 'returns nil when there is no review' do
       expect(queue_item.rating).to eq(nil)
     end

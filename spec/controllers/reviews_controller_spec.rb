@@ -9,9 +9,10 @@ describe ReviewsController do
       before { session[:user_id] = current_user.id }
 
       context 'with valid inputs' do
-        before { post :create,
-                 review: Fabricate.attributes_for(:review),
-                 video_id: video.id }
+        before do
+          post :create, review: Fabricate.attributes_for(:review),
+                        video_id: video.id
+        end
 
         it 'creates a review' do
           expect(Review.count).to eq(1)
@@ -31,7 +32,6 @@ describe ReviewsController do
       end
 
       context 'with invalid inputs' do
-
         it 'does not create a review' do
           post :create, review:  {rating: 1}, video_id: video.id
           expect(Review.count).to eq(0)
@@ -55,7 +55,8 @@ describe ReviewsController do
 
     context 'with unauthenticated users' do
       it 'redirects to the sign in path' do
-        post :create, review: Fabricate.attributes_for(:review), video_id: video.id
+        post :create, review: Fabricate.attributes_for(:review),
+                      video_id: video.id
         expect(response).to redirect_to sign_in_path
       end
     end

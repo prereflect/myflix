@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe QueueItemsController do
-  let (:toby) { Fabricate(:user) }
+  let(:toby) { Fabricate(:user) }
   before(:each) { session[:user_id] = toby.id }
 
   describe 'GET index' do
@@ -25,7 +25,7 @@ describe QueueItemsController do
   end
 
   describe 'POST create' do
-    let (:spider) { Fabricate(:video) }
+    let(:spider) { Fabricate(:video) }
 
     context 'with authenticated user' do
       it 'redirects to My Queue page' do
@@ -64,7 +64,7 @@ describe QueueItemsController do
     end
 
     context 'with unauthenticated user' do
-        before { session[:user_id] = nil }
+      before { session[:user_id] = nil }
 
       it 'redirects to the sign in page' do
         post :create, video_id: spider.id
