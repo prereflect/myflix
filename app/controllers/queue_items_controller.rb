@@ -22,15 +22,7 @@ class QueueItemsController < ApplicationController
   def queue_video(video)
     QueueItem.create(video: video,
                      user: current_user,
-                     position: new_queue_item_position
-                    ) unless selected_video_in_queue?(video)
-  end
-
-  def new_queue_item_position
-    current_user.queue_items.count + 1
-  end
-
-  def selected_video_in_queue?(video)
-    current_user.queue_items.map(&:video).include?(video)
+                     position: current_user.new_queue_item_position
+                    ) unless current_user.already_queued?(video)
   end
 end

@@ -19,9 +19,11 @@ describe SessionsController do
 
   describe 'POST create' do
     context 'with valid credentials' do
-      before(:each) { post :create, user: toby,
-                                    email: toby.email,
-                                    password: toby.password }
+      before(:each) do
+        post :create, user: toby,
+                      email: toby.email,
+                      password: toby.password
+      end
 
       it 'puts the signed in user in the session' do
         expect(session[:user_id]).to eq(toby.id)
@@ -37,9 +39,11 @@ describe SessionsController do
     end
 
     context 'with invalid credentials' do
-      before(:each) { post :create, user: toby,
-                                    email: toby.email,
-                                    password: toby.password + 'wrong' }
+      before(:each) do
+        post :create, user: toby,
+                      email: toby.email,
+                      password: toby.password + 'wrong'
+      end
 
       it 'does not put user in session' do
         expect(session[:user_id]).to be_nil

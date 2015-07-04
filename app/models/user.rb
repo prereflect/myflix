@@ -6,4 +6,12 @@ class User < ActiveRecord::Base
   has_secure_password validations: false
 
   has_many :queue_items
+
+  def new_queue_item_position
+    queue_items.count + 1
+  end
+
+  def already_queued?(video)
+    queue_items.map(&:video).include?(video)
+  end
 end
