@@ -5,6 +5,7 @@ describe User do
   it { should validate_presence_of(:password) }
   it { should validate_presence_of(:full_name) }
   it { should validate_uniqueness_of(:email) }
+  it { should have_many(:queue_items).order('position') }
 
   describe '#new_queue_item_position' do
     it 'assigns position 1 if My Queue is empty' do
