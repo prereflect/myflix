@@ -100,6 +100,8 @@ describe QueueItemsController do
       it 'normalizes the remaining queue items' do
         Fabricate(:queue_item, video_id: 2, user: toby, position: 2)
         delete :destroy, id: queue_item1.id
+        # expect(QueueItem.first.position).to eq(1)
+        # expect(QueueItem.count).to eq(1)
         expect(QueueItem.first.video_id).to eq(2)
       end
     end
