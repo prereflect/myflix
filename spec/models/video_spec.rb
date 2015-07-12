@@ -4,11 +4,13 @@ describe Video do
   it { should belong_to(:category) }
   it { should validate_presence_of(:title) }
   it { should validate_presence_of(:description) }
-  it { should have_many(:reviews).order('created_at DESC') }
+  it { should have_many(:reviews).order('created_at desc') }
 
   describe '.search_by_title' do
-    let!(:dragon) { Video.create(title: 'How to Train Your Dragon', description: 'Hiccup and Toothless, BFF') }
-    let(:cop) { Video.create(title: 'Training Day', description: 'Bad Cop, Good Cop') }
+    let!(:dragon) { Video.create(title: 'How to Train Your Dragon',
+                                 description: 'Hiccup and Toothless, BFF') }
+    let(:cop) { Video.create(title: 'Training Day',
+                             description: 'Bad Cop, Good Cop') }
 
     it 'returns an empty array if there is no match' do
       expect(Video.search_by_title('hello')).to eq([])
