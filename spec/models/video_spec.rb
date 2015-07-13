@@ -7,10 +7,8 @@ describe Video do
   it { should have_many(:reviews).order('created_at desc') }
 
   describe '.search_by_title' do
-    let!(:dragon) { Video.create(title: 'How to Train Your Dragon',
-                                 description: 'Hiccup and Toothless, BFF') }
-    let(:cop) { Video.create(title: 'Training Day',
-                             description: 'Bad Cop, Good Cop') }
+    let!(:dragon) { Fabricate(:video, title: 'How to Train Your Dragon') }
+    let(:cop) { Fabricate(:video, title: 'Training Day') }
 
     it 'returns an empty array if there is no match' do
       expect(Video.search_by_title('hello')).to eq([])

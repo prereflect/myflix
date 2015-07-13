@@ -62,12 +62,7 @@ describe SessionsController do
 
   describe 'GET destroy' do
     let(:toby) { Fabricate(:user) }
-    before  do
-      session[:user_id] = toby.id
-      post :create, user: toby,
-                    email: toby.email,
-                    password: toby.password
-    end
+    before(:each) { session[:user_id] = toby.id }
 
     it 'clears the session for the user' do
       get :destroy

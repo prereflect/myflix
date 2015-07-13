@@ -23,8 +23,8 @@ describe UsersController do
     end
 
     context 'with invalid input' do
-      let(:toby) { Fabricate.attributes_for(:user) }
-      before { post :create, user: toby.merge(email: '') }
+      let(:toby_attributes) { Fabricate.attributes_for(:user, email: '') }
+      before { post :create, user: toby_attributes }
 
       it 'does not create the user' do
         expect(User.count).to eq(0)

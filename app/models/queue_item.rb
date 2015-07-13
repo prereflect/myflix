@@ -27,6 +27,6 @@ class QueueItem < ActiveRecord::Base
   private
 
   def review
-    @review ||=  Review.where(user_id: user.id, video_id: video.id).first
+    @review ||=  Review.find_by(user_id: user.id, video_id: video.id)
   end
 end
