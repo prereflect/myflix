@@ -1,17 +1,15 @@
 require 'spec_helper'
 
 describe SessionsController do
-  let(:toby) { Fabricate(:user) }
-
   describe 'GET new' do
     it 'redirects to home page for authenticated users' do
+      toby = Fabricate(:user)
       session[:user_id] = toby.id
       get :new
       expect(response).to redirect_to home_path
     end
 
     it 'renders new template for unauthenticated users' do
-      session[:user_id] = nil
       get :new
       expect(response).to render_template :new
     end
@@ -19,7 +17,9 @@ describe SessionsController do
 
   describe 'POST create' do
     context 'with valid credentials' do
-      before(:each) do
+      let(:toby) { Fabricate(:user) }
+      before do
+        session[:user_id] = toby.id
         post :create, user: toby,
                       email: toby.email,
                       password: toby.password
@@ -39,7 +39,8 @@ describe SessionsController do
     end
 
     context 'with invalid credentials' do
-      before(:each) do
+      let(:toby) { Fabricate(:user) }
+      before do
         post :create, user: toby,
                       email: toby.email,
                       password: toby.password + 'wrong'
@@ -60,17 +61,21 @@ describe SessionsController do
   end
 
   describe 'GET destroy' do
-    before(:each) { get :destroy }
+    let(:toby) { Fabricate(:user) }
+    before(:each) { session[:user_id] = toby.id }
 
     it 'clears the session for the user' do
+      get :destroy
       expect(session[:user_id]).to be_nil
     end
 
     it 'redirects to the root path' do
+      get :destroy
       expect(response).to redirect_to root_path
     end
 
     it 'sets the success notice' do
+      get :destroy
       expect(flash[:success]).not_to be_blank
     end
   end

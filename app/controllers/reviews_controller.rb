@@ -6,7 +6,7 @@ class  ReviewsController < ApplicationController
     review = @video.reviews.build(review_params.merge!(user: current_user))
 
     if review.save
-      flash.now[:success] = 'Your review has been created'
+      flash[:success] = 'Your review has been created'
       redirect_to @video
     else
       flash.now[:danger] = 'Please complete your review'
