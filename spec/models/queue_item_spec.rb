@@ -4,16 +4,8 @@ describe QueueItem do
   it { should belong_to(:user) }
   it { should belong_to(:video) }
   it { should validate_numericality_of(:position).only_integer }
-
-  describe '#video_title' do
-    it 'returns the title of the associated video' do
-      toby = Fabricate(:user)
-      sports  = Fabricate(:category, name: 'sports')
-      skate = Fabricate(:video, title: 'Skate or Die!', category: sports)
-      queue_item = Fabricate(:queue_item, user: toby, video: skate)
-      expect(queue_item.video_title).to eq('Skate or Die!')
-    end
-  end
+  it { should delegate_method(:category).to(:video) }
+  it { should delegate_method(:video_title).to(:video).as(:title) }
 
   describe '#rating' do
     let(:toby) { Fabricate(:user) }
@@ -62,16 +54,6 @@ describe QueueItem do
       skate = Fabricate(:video, category: sports)
       queue_item = Fabricate(:queue_item, user: toby, video: skate)
       expect(queue_item.category_name).to eq('sports')
-    end
-  end
-
-  describe '#category' do
-    it 'returns the category of the video' do
-      toby = Fabricate(:user)
-      sports = Fabricate(:category, name: 'sports')
-      skate = Fabricate(:video, category: sports)
-      queue_item = Fabricate(:queue_item, user: toby, video: skate)
-      expect(queue_item.category).to eq(sports)
     end
   end
 end
