@@ -3,8 +3,7 @@ require 'spec_helper'
 describe SessionsController do
   describe 'GET new' do
     it 'redirects to home page for authenticated users' do
-      toby = Fabricate(:user)
-      session[:user_id] = toby.id
+      set_current_user
       get :new
       expect(response).to redirect_to home_path
     end
@@ -61,8 +60,7 @@ describe SessionsController do
   end
 
   describe 'GET destroy' do
-    let(:toby) { Fabricate(:user) }
-    before(:each) { session[:user_id] = toby.id }
+    before { set_current_user }
 
     it 'clears the session for the user' do
       get :destroy
