@@ -7,9 +7,9 @@ feature 'User adds video to My Queue' do
   before do
     sign_in
 
-    click_on 'Videos'
-    find("a[href='#{video_path(decline)}']").click
-    click_on '+ My Queue'
+    user_clicks_on_link('Videos')
+    user_selects_video_on_page(decline)
+    user_clicks_on_link('+ My Queue')
   end
 
   scenario 'shows video on My Queue page' do
@@ -17,14 +17,12 @@ feature 'User adds video to My Queue' do
   end
 
   scenario 'correctly links back to video' do
-    find("a[href='#{video_path(decline)}']").click
+    user_selects_video_on_page(decline)
 
     expect(current_path).to eq(video_path(decline))
   end
 
   scenario '+ My Queue button will not be on video page' do
-    find("a[href='#{video_path(decline)}']").click
-
     expect(page).to_not have_content('+ My Queue')
   end
 end

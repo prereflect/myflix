@@ -9,3 +9,15 @@ end
 def sign_out
   visit sign_out_path
 end
+
+def user_clicks_on_link(link_text)
+  click_on link_text
+end
+
+def user_clicks_on_button(button_text)
+  click_button button_text
+end
+
+def user_selects_video_on_page(video)
+  find("a[href='#{video_path(video)}']").click
+end

@@ -13,11 +13,11 @@ feature 'User reorders My Queue' do
     user_adds_video_to_my_queue(rashaan)
     user_adds_video_to_my_queue(lamb)
 
-    user_sets_video_position(decline, 22)
-    user_sets_video_position(rashaan, 444)
-    user_sets_video_position(lamb, 1)
+    user_changes_video_position(decline, 22)
+    user_changes_video_position(rashaan, 444)
+    user_changes_video_position(lamb, 1)
 
-    click_button 'Update Instant Queue'
+    update_my_queue
 
     expect_video_position(lamb, 1)
     expect_video_position(decline, 2)
@@ -26,15 +26,19 @@ feature 'User reorders My Queue' do
 end
 
 def user_adds_video_to_my_queue(video)
-  click_on 'Videos'
-  find("a[href='#{video_path(video)}']").click
+  user_clicks_on_link('Video')
+  user_selects_video_on_page(video)
   click_on '+ My Queue'
 end
 
-def user_sets_video_position(video, position)
+def user_changes_video_position(video, position)
   within(:xpath, "//tr[contains(.,'#{video.title}')]") do
     fill_in "queue_items[][position]", with: position
   end
+end
+
+def update_my_queue
+  user_clicks_on_button('Update Instant Queue')
 end
 
 def expect_video_position(video, position)
