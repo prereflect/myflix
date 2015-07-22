@@ -16,7 +16,7 @@
       - if current_user
         %ul.nav.navbar-nav
           %li
-            %a{:href => '#'} Videos
+            = link_to 'Videos', home_path
           %li
             = link_to 'My Queue', my_queue_path
           %li
