@@ -7,9 +7,9 @@ feature 'User adds video to My Queue' do
   before do
     sign_in
 
-    user_clicks_on_link('Videos')
+    user_clicks_on('Videos')
     user_selects_video_on_page(decline)
-    user_clicks_on_link('+ My Queue')
+    user_clicks_on('+ My Queue')
   end
 
   scenario 'shows video on My Queue page' do

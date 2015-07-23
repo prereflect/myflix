@@ -26,9 +26,9 @@ feature 'User reorders My Queue' do
 end
 
 def user_adds_video_to_my_queue(video)
-  user_clicks_on_link('Video')
+  user_clicks_on('Video')
   user_selects_video_on_page(video)
-  click_on '+ My Queue'
+  user_clicks_on('+ My Queue')
 end
 
 def user_changes_video_position(video, position)
@@ -38,7 +38,7 @@ def user_changes_video_position(video, position)
 end
 
 def update_my_queue
-  user_clicks_on_button('Update Instant Queue')
+  user_clicks_on('Update Instant Queue')
 end
 
 def expect_video_position(video, position)

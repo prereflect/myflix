@@ -106,60 +106,66 @@ describe QueueItemsController do
   describe 'POST update_queue' do
     context 'with valid inputs' do
       let(:video) { Fabricate(:video) }
-
-      before do
-        @queue_item1 = Fabricate(:queue_item, user: current_user, video: video,
-                                 position: 1)
-        @queue_item2 = Fabricate(:queue_item, user: current_user, video: video,
-                                 position: 2)
+      let(:queue_item1) do
+        Fabricate(:queue_item, user: current_user,
+                               video: video,
+                               position: 1)
+      end
+      let(:queue_item2) do
+        Fabricate(:queue_item, user: current_user,
+                               video: video,
+                               position: 2)
       end
 
       it 'reorders the queue items' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 2},
-                                          {id: @queue_item2.id, position: 1}]
-        expect(current_user.queue_items).to eq([@queue_item2, @queue_item1])
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2},
+                                          {id: queue_item2.id, position: 1}]
+        expect(current_user.queue_items).to eq([queue_item2, queue_item1])
       end
 
       it 'normalizes the position numbers' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 3},
-                                          {id: @queue_item2.id, position: 2}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 3},
+                                          {id: queue_item2.id, position: 2}]
         expect(current_user.queue_items.map(&:position)).to eq([1, 2])
       end
 
       it 'redirect to the My Queue page' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 2},
-                                          {id: @queue_item2.id, position: 1}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2},
+                                          {id: queue_item2.id, position: 1}]
         expect(response).to redirect_to my_queue_path
       end
     end
 
     context 'with invalid inputs' do
       let(:video) { Fabricate(:video) }
-
-      before do
-        @queue_item1 = Fabricate(:queue_item, user: current_user, video: video,
-                                 position: 1)
-        @queue_item2 = Fabricate(:queue_item, user: current_user, video: video,
-                                 position: 2)
+      let(:queue_item1) do
+        Fabricate(:queue_item, user: current_user,
+                               video: video,
+                               position: 1)
+      end
+      let(:queue_item2) do
+        Fabricate(:queue_item, user: current_user,
+                               video: video,
+                               position: 2)
       end
 
       it 'redirects to the My Queue page' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 2},
-                                          {id: @queue_item2.id, position: 1.5}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2},
+                                          {id: queue_item2.id, position: 1.5}]
         expect(response).to redirect_to my_queue_path
       end
 
       it 'sets the flash error message' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 2},
-                                          {id: @queue_item2.id, position: 1.5}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2},
+                                          {id: queue_item2.id, position: 1.5}]
         expect(response).to redirect_to my_queue_path
         expect(flash[:danger]).to be_present
       end
 
       it 'does not change the queue items' do
-        post :update_queue, queue_items: [{id: @queue_item1.id, position: 2},
-                                          {id: @queue_item2.id, position: 3.3}]
-        expect(@queue_item1.reload.position).to eq(1)
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2},
+                                          {id: queue_item2.id, position: 3.3}]
+        expect(queue_item1.reload.position).to eq(1)
       end
     end
 
