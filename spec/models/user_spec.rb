@@ -9,6 +9,7 @@ describe User do
 
   describe '#new_queue_item_position' do
     let(:toby)  { Fabricate(:user) }
+
     it 'assigns position 1 if My Queue is empty' do
       movie_one = Fabricate(:queue_item, user: toby)
       expect(movie_one).to eq(toby.queue_items.first)
